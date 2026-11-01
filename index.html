@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Inspirations / 灵感实验室</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入谷歌字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 背景网格与光晕 -->
+    <div class="bg-grid"></div>
+    <div class="glow-effect"></div>
+
+    <!-- 左侧导航 -->
+    <nav class="sidebar">
+        <div class="logo">CYBER.SPACE</div>
+        <ul class="nav-links">
+            <li><a href="#hero">01. Agentic</a></li>
+            <li><a href="#showcase">02. Sidesick</a></li>
+            <li><a href="#cards">03. Merchandising</a></li>
+        </ul>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main>
+        <!-- 巨大标题区 -->
+        <section id="hero" class="hero">
+            <h1 class="glitch-text" data-text="Exponential">Exponential</h1>
+            <p class="subtitle">探索数字界面与赛博艺术的边界。</p>
+            <div class="status-pill">> SYSTEM READY_</div>
+        </section>
+
+        <!-- 3D 倾斜卡片区 -->
+        <section id="cards" class="showcase-3d">
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-header">DATA_CHANNEL_01</div>
+                    <div class="card-body">
+                        <h3>Business details in AI</h3>
+                        <p>Review and approve the facts that shape your store.</p>
+                        <button class="cyber-btn">Read help doc</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">DATA_CHANNEL_02</div>
+                    <div class="card-body">
+                        <h3>Agentic Sidekick</h3>
+                        <p>Powered by Shopify's new AI assistant.</p>
+                        <button class="cyber-btn">Initialize</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 赛博爬虫 (跟随鼠标) -->
+    <div id="cyber-crawler">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="8" fill="#ff4500" filter="url(#glow)"/>
+            <path d="M50,50 Q70,20 90,30" stroke="#ff4500" stroke-width="2" fill="none"/>
+            <path d="M50,50 Q30,20 10,30" stroke="#ff4500" stroke-width="2" fill="none"/>
+            <path d="M50,50 Q70,80 90,70" stroke="#ff4500" stroke-width="2" fill="none"/>
+            <path d="M50,50 Q30,80 10,70" stroke="#ff4500" stroke-width="2" fill="none"/>
+            <defs>
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+        </svg>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

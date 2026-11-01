@@ -1,0 +1,146 @@
+:root {
+    --bg-color: #050505;
+    --accent-blue: #1c24ff;
+    --accent-orange: #ff4500;
+    --accent-green: #00ff88;
+    --text-main: #ffffff;
+    --text-muted: #888888;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none; /* 隐藏系统鼠标，用爬虫代替 */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* 背景网格 */
+.bg-grid {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -2;
+}
+
+/* 背景光晕 */
+.glow-effect {
+    position: fixed;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(28,36,255,0.15) 0%, rgba(0,0,0,0) 70%);
+    filter: blur(50px);
+    z-index: -1;
+}
+
+/* 侧边栏 */
+.sidebar {
+    position: fixed;
+    left: 40px; top: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    z-index: 10;
+}
+
+.nav-links { list-style: none; margin-top: 40px; }
+.nav-links li { margin-bottom: 15px; }
+.nav-links a { color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 14px;}
+.nav-links a:hover { color: var(--accent-blue); text-shadow: 0 0 10px var(--accent-blue); }
+
+/* 主区域 */
+main { margin-left: 250px; padding: 100px 50px; }
+
+/* 巨大文字 */
+.hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 8vw;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.subtitle { margin-top: 20px; color: var(--text-muted); font-size: 1.2rem; }
+.status-pill {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 8px 16px;
+    border: 1px solid var(--accent-green);
+    color: var(--accent-green);
+    font-family: 'JetBrains Mono', monospace;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* 倾斜 3D 透视卡片 */
+.showcase-3d {
+    margin-top: 100px;
+    perspective: 2000px;
+    display: flex;
+    justify-content: center;
+}
+
+.card-container {
+    transform: rotateX(45deg) rotateZ(-30deg);
+    transform-style: preserve-3d;
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    background: rgba(28, 36, 255, 0.1);
+    border: 1px solid rgba(28, 36, 255, 0.4);
+    padding: 30px;
+    border-radius: 8px;
+    width: 350px;
+    backdrop-filter: blur(10px);
+    box-shadow: -20px 20px 50px rgba(0,0,0,0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateZ(30px);
+    box-shadow: -20px 20px 50px rgba(28, 36, 255, 0.3);
+    border-color: var(--accent-blue);
+}
+
+.card-header { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-blue); margin-bottom: 20px; }
+.card-body h3 { font-size: 1.5rem; margin-bottom: 10px; }
+.card-body p { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+
+.cyber-btn {
+    background: transparent;
+    border: 1px solid var(--text-main);
+    color: var(--text-main);
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: none;
+    font-family: 'Inter', sans-serif;
+    transition: 0.3s;
+}
+.cyber-btn:hover { background: var(--text-main); color: var(--bg-color); }
+
+/* 赛博爬虫 */
+#cyber-crawler {
+    position: fixed;
+    width: 80px; height: 80px;
+    pointer-events: none; /* 防止阻挡点击 */
+    z-index: 9999;
+    transition: transform 0.05s linear; /* 平滑追赶 */
+}
+
+/* 手机端适配 */
+@media (max-width: 768px) {
+    main { margin-left: 0; padding: 60px 20px; }
+    .sidebar { display: none; }
+    .card-container { transform: none; flex-direction: column; }
+    .hero h1 { font-size: 15vw; }
+}
