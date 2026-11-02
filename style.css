@@ -11,7 +11,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none; /* 隐藏系统鼠标，用爬虫代替 */
+    cursor: none; /* 隐藏系统鼠标 */
 }
 
 body {
@@ -122,29 +122,53 @@ main { margin-left: 250px; padding: 100px 50px; }
     color: var(--text-main);
     padding: 10px 20px;
     border-radius: 4px;
-    cursor: none;
     font-family: 'Inter', sans-serif;
     transition: 0.3s;
 }
 .cyber-btn:hover { background: var(--text-main); color: var(--bg-color); }
 
-/* 赛博爬虫 */
+/* =========================================
+   赛博爬虫的核心样式 (保证能显示)
+   ========================================= */
 #cyber-crawler {
     position: fixed;
-    width: 60px; 
-    height: 60px;
-    pointer-events: none; /* 防止阻挡鼠标点击按钮 */
+    top: 0; left: 0;
+    width: 40px; height: 40px;
+    pointer-events: none;
     z-index: 9999;
-    /* 居中对齐修正，让爬虫的中心点对准鼠标 */
-    margin-top: -30px; 
-    margin-left: -30px;
-    /* 加上一点发光效果 */
-    filter: drop-shadow(0 0 10px #ff4500);
+    /* 用位移居中对齐鼠标 */
+    transform: translate(-50%, -50%);
+    will-change: transform; /* 优化动画性能 */
 }
+
+/* 爬虫的身体核心 */
+#cyber-crawler .core {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px; height: 10px;
+    background-color: var(--accent-orange);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--accent-orange), 0 0 30px var(--accent-orange);
+}
+
+/* 爬虫的腿 (用线条模拟) */
+#cyber-crawler .leg {
+    position: absolute;
+    background-color: var(--accent-orange);
+    box-shadow: 0 0 5px var(--accent-orange);
+}
+.leg-1 { width: 20px; height: 2px; top: 10px; left: -10px; transform: rotate(45deg); }
+.leg-2 { width: 20px; height: 2px; top: 10px; right: -10px; transform: rotate(-45deg); }
+.leg-3 { width: 20px; height: 2px; bottom: 10px; left: -10px; transform: rotate(-45deg); }
+.leg-4 { width: 20px; height: 2px; bottom: 10px; right: -10px; transform: rotate(45deg); }
+
 /* 手机端适配 */
 @media (max-width: 768px) {
     main { margin-left: 0; padding: 60px 20px; }
     .sidebar { display: none; }
     .card-container { transform: none; flex-direction: column; }
     .hero h1 { font-size: 15vw; }
+    * { cursor: auto; } /* 手机端不需要隐藏鼠标 */
+    #cyber-crawler { display: none; } /* 手机端关掉爬虫防止卡顿 */
 }
