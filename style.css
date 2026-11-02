@@ -131,12 +131,16 @@ main { margin-left: 250px; padding: 100px 50px; }
 /* 赛博爬虫 */
 #cyber-crawler {
     position: fixed;
-    width: 80px; height: 80px;
-    pointer-events: none; /* 防止阻挡点击 */
+    width: 60px; 
+    height: 60px;
+    pointer-events: none; /* 防止阻挡鼠标点击按钮 */
     z-index: 9999;
-    transition: transform 0.05s linear; /* 平滑追赶 */
+    /* 居中对齐修正，让爬虫的中心点对准鼠标 */
+    margin-top: -30px; 
+    margin-left: -30px;
+    /* 加上一点发光效果 */
+    filter: drop-shadow(0 0 10px #ff4500);
 }
-
 /* 手机端适配 */
 @media (max-width: 768px) {
     main { margin-left: 0; padding: 60px 20px; }
