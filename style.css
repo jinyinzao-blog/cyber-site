@@ -1,10 +1,10 @@
 :root {
-    --bg-color: #050505;
+    --bg-color: #030305;
     --accent-blue: #1c24ff;
     --accent-orange: #ff4500;
     --accent-green: #00ff88;
     --text-main: #ffffff;
-    --text-muted: #888888;
+    --text-muted: #a1a1aa;
 }
 
 * {
@@ -22,25 +22,33 @@ body {
     min-height: 100vh;
 }
 
-/* 背景网格 */
+/* 数据网络背景 */
+#network-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -3;
+    opacity: 0.6;
+}
+
+/* 网格与光晕 */
 .bg-grid {
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
     background-image: 
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
     background-size: 40px 40px;
     z-index: -2;
 }
 
-/* 背景光晕 */
 .glow-effect {
     position: fixed;
     top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(28,36,255,0.15) 0%, rgba(0,0,0,0) 70%);
-    filter: blur(50px);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(28,36,255,0.1) 0%, rgba(0,0,0,0) 70%);
+    filter: blur(60px);
     z-index: -1;
+    pointer-events: none;
 }
 
 /* 侧边栏 */
@@ -50,25 +58,27 @@ body {
     font-family: 'JetBrains Mono', monospace;
     z-index: 10;
 }
-
+.logo { font-weight: 700; letter-spacing: 2px; }
 .nav-links { list-style: none; margin-top: 40px; }
 .nav-links li { margin-bottom: 15px; }
 .nav-links a { color: var(--text-muted); text-decoration: none; transition: 0.3s; font-size: 14px;}
-.nav-links a:hover { color: var(--accent-blue); text-shadow: 0 0 10px var(--accent-blue); }
+.nav-links a:hover { color: var(--accent-green); text-shadow: 0 0 10px var(--accent-green); }
 
 /* 主区域 */
 main { margin-left: 250px; padding: 100px 50px; }
 
-/* 巨大文字 */
+/* 巨大文字 (带故障效果) */
 .hero h1 {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 8vw;
     text-transform: uppercase;
     line-height: 1;
-    letter-spacing: -2px;
+    letter-spacing: -3px;
+    position: relative;
+    text-shadow: 0 0 20px rgba(255,255,255,0.1);
 }
 
-.subtitle { margin-top: 20px; color: var(--text-muted); font-size: 1.2rem; }
+.subtitle { margin-top: 20px; color: var(--text-muted); font-size: 1.2rem; font-family: 'JetBrains Mono'; }
 .status-pill {
     display: inline-block;
     margin-top: 30px;
@@ -76,14 +86,16 @@ main { margin-left: 250px; padding: 100px 50px; }
     border: 1px solid var(--accent-green);
     color: var(--accent-green);
     font-family: 'JetBrains Mono', monospace;
-    border-radius: 20px;
+    border-radius: 4px;
     font-size: 12px;
+    background: rgba(0, 255, 136, 0.1);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
 }
 
 /* 倾斜 3D 透视卡片 */
 .showcase-3d {
-    margin-top: 100px;
-    perspective: 2000px;
+    margin-top: 120px;
+    perspective: 2500px;
     display: flex;
     justify-content: center;
 }
@@ -92,83 +104,86 @@ main { margin-left: 250px; padding: 100px 50px; }
     transform: rotateX(45deg) rotateZ(-30deg);
     transform-style: preserve-3d;
     display: flex;
-    gap: 20px;
+    gap: 30px;
 }
 
+/* 玻璃拟态卡片 */
 .card {
-    background: rgba(28, 36, 255, 0.1);
-    border: 1px solid rgba(28, 36, 255, 0.4);
-    padding: 30px;
-    border-radius: 8px;
-    width: 350px;
-    backdrop-filter: blur(10px);
-    box-shadow: -20px 20px 50px rgba(0,0,0,0.5);
-    transition: transform 0.3s, box-shadow 0.3s;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 35px;
+    border-radius: 12px;
+    width: 380px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: -20px 20px 40px rgba(0,0,0,0.8), inset 0 0 20px rgba(28,36,255,0.1);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
 }
 
 .card:hover {
-    transform: translateZ(30px);
-    box-shadow: -20px 20px 50px rgba(28, 36, 255, 0.3);
+    transform: translateZ(50px);
+    box-shadow: -30px 30px 60px rgba(28,36,255,0.4), inset 0 0 30px rgba(28,36,255,0.3);
     border-color: var(--accent-blue);
 }
 
-.card-header { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-blue); margin-bottom: 20px; }
-.card-body h3 { font-size: 1.5rem; margin-bottom: 10px; }
-.card-body p { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+.card-header { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-green); margin-bottom: 20px; letter-spacing: 1px;}
+.card-body h3 { font-size: 1.6rem; margin-bottom: 15px; font-family: 'Space Grotesk';}
+.card-body p { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 25px; }
 
 .cyber-btn {
     background: transparent;
-    border: 1px solid var(--text-main);
+    border: 1px solid rgba(255,255,255,0.3);
     color: var(--text-main);
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-family: 'Inter', sans-serif;
-    transition: 0.3s;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
 }
-.cyber-btn:hover { background: var(--text-main); color: var(--bg-color); }
+.cyber-btn:hover { 
+    background: rgba(255,255,255,0.1); 
+    border-color: var(--text-main);
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
 
 /* =========================================
-   赛博爬虫的核心样式 (保证能显示)
+   赛博爬虫 (SVG 样式)
    ========================================= */
 #cyber-crawler {
     position: fixed;
-    top: 0; left: 0;
-    width: 40px; height: 40px;
+    width: 80px; height: 80px;
     pointer-events: none;
     z-index: 9999;
-    /* 用位移居中对齐鼠标 */
-    transform: translate(-50%, -50%);
-    will-change: transform; /* 优化动画性能 */
+    /* 居中对齐鼠标 */
+    margin-left: -40px; 
+    margin-top: -40px;
+    will-change: transform;
 }
 
-/* 爬虫的身体核心 */
-#cyber-crawler .core {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 10px; height: 10px;
-    background-color: var(--accent-orange);
-    border-radius: 50%;
-    box-shadow: 0 0 15px var(--accent-orange), 0 0 30px var(--accent-orange);
+/* 腿部动画 */
+.leg {
+    animation: crawl 0.4s infinite alternate;
+    transform-origin: center;
 }
 
-/* 爬虫的腿 (用线条模拟) */
-#cyber-crawler .leg {
-    position: absolute;
-    background-color: var(--accent-orange);
-    box-shadow: 0 0 5px var(--accent-orange);
+.leg.front-left, .leg.back-right { animation-delay: 0.2s; }
+.leg.mid-left { animation-delay: 0.1s; }
+
+@keyframes crawl {
+    0% { transform: rotate(-10deg); }
+    100% { transform: rotate(10deg); }
 }
-.leg-1 { width: 20px; height: 2px; top: 10px; left: -10px; transform: rotate(45deg); }
-.leg-2 { width: 20px; height: 2px; top: 10px; right: -10px; transform: rotate(-45deg); }
-.leg-3 { width: 20px; height: 2px; bottom: 10px; left: -10px; transform: rotate(-45deg); }
-.leg-4 { width: 20px; height: 2px; bottom: 10px; right: -10px; transform: rotate(45deg); }
 
 /* 手机端适配 */
 @media (max-width: 768px) {
     main { margin-left: 0; padding: 60px 20px; }
     .sidebar { display: none; }
     .card-container { transform: none; flex-direction: column; }
-    .hero h1 { font-size: 15vw; }
-    * { cursor: auto; } /* 手机端不需要隐藏鼠标 */
-    #cyber-crawler { display: none; } /* 手机端关掉爬虫防止卡顿 */
+    .hero h1 { font-size: 15vw; letter-spacing: -1px; }
+    * { cursor: auto; } 
+    #cyber-crawler, #network-bg { display: none; } 
 }
