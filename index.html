@@ -1,94 +1,46 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Inspirations / 灵感实验室</title>
+    <title>SWISS_LAYOUT_102</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- 引入具有力量感的无衬线字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 动态数据网络背景 (Canvas) -->
-    <canvas id="network-bg"></canvas>
-    <div class="bg-grid"></div>
-    <div class="glow-effect"></div>
+    <!-- 自定义几何光标 -->
+    <div id="cursor"></div>
 
-    <!-- 左侧导航 -->
-    <nav class="sidebar">
-        <div class="logo">CYBER.SPACE</div>
-        <ul class="nav-links">
-            <li><a href="#hero">01. Agentic</a></li>
-            <li><a href="#showcase">02. Sidesick</a></li>
-            <li><a href="#cards">03. Merchandising</a></li>
-        </ul>
-    </nav>
+    <!-- 左右分栏排版 -->
+    <main class="layout">
+        <!-- 左侧竖向信息 -->
+        <aside class="sidebar">
+            <div class="vertical-text">MOTION THROUGH TYPOGRAPHY</div>
+            <div class="index">102.</div>
+            <div class="brand">SEMFORT<br>ACTIVEWEAR</div>
+        </aside>
 
-    <!-- 主内容区 -->
-    <main>
-        <section id="hero" class="hero">
-            <h1 class="glitch-text" data-text="EXPONENTIAL">EXPONENTIAL</h1>
-            <p class="subtitle">探索数字界面与赛博艺术的边界。</p>
-            <div class="status-pill">> SYSTEM READY_</div>
-        </section>
-
-        <!-- 3D 卡片区 -->
-        <section id="cards" class="showcase-3d">
-            <div class="card-container">
-                <div class="card">
-                    <div class="card-header">DATA_CHANNEL_01</div>
-                    <div class="card-body">
-                        <h3>Business details in AI</h3>
-                        <p>Review and approve the facts that shape your store. Integrated with advanced AI models.</p>
-                        <button class="cyber-btn">Read help doc</button>
-                    </div>
+        <!-- 核心排版区域 -->
+        <section class="poster">
+            <div class="typography-block">
+                <h1 class="stretch">STRETCH</h1>
+                <h1 class="never">NEVER</h1>
+                <div class="row">
+                    <h1 class="stop">STOP</h1>
+                    <div class="circle-graphic"></div>
                 </div>
-                <div class="card">
-                    <div class="card-header">DATA_CHANNEL_02</div>
-                    <div class="card-body">
-                        <h3>Agentic Sidekick</h3>
-                        <p>Powered by Shopify's new AI assistant. Automate your workflow seamlessly.</p>
-                        <button class="cyber-btn">Initialize</button>
-                    </div>
+                <h1 class="moving">MOVING</h1>
+                <div class="bottom-row">
+                    <h2 class="repeat">REPEAT SHIFT</h2>
+                    <h2 class="collide">COLLIDE</h2>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- 赛博爬虫 (SVG 结构，更逼真) -->
-    <div id="cyber-crawler">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <!-- 发光滤镜 -->
-            <defs>
-                <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur1" />
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur2" />
-                    <feMerge>
-                        <feMergeNode in="blur2" />
-                        <feMergeNode in="blur1" />
-                        <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                </filter>
-            </defs>
-            
-            <!-- 身体 -->
-            <g filter="url(#neon-glow)">
-                <!-- 腹部 -->
-                <ellipse cx="60" cy="50" rx="15" ry="10" fill="#ff4500" opacity="0.8"/>
-                <!-- 胸部 -->
-                <ellipse cx="45" cy="50" rx="10" ry="8" fill="#ff4500"/>
-                <!-- 头部 -->
-                <circle cx="30" cy="50" r="6" fill="#ffaa00"/>
-                
-                <!-- 腿 (加上了动态类名) -->
-                <path class="leg front-left" d="M45,45 Q30,20 10,30" stroke="#ff4500" stroke-width="2" fill="none"/>
-                <path class="leg front-right" d="M45,55 Q30,80 10,70" stroke="#ff4500" stroke-width="2" fill="none"/>
-                <path class="leg mid-left" d="M55,45 Q45,20 30,10" stroke="#ff4500" stroke-width="2" fill="none"/>
-                <path class="leg mid-right" d="M55,55 Q45,80 30,90" stroke="#ff4500" stroke-width="2" fill="none"/>
-                <path class="leg back-left" d="M70,45 Q80,25 95,30" stroke="#ff4500" stroke-width="2" fill="none"/>
-                <path class="leg back-right" d="M70,55 Q80,75 95,70" stroke="#ff4500" stroke-width="2" fill="none"/>
-            </g>
-        </svg>
-    </div>
+    <!-- 背景的克莱因蓝图形阵列 (类似名片背面) -->
+    <div class="pattern-bg"></div>
 
     <script src="script.js"></script>
 </body>
